@@ -11,7 +11,7 @@ __karma__.loaded = function () { };
 
 System.config({
     packages: {
-        'base/src/app': {
+        'base/src': {
             defaultExtension: false,
             format: 'register',
             map: Object.keys(window.__karma__.files).
@@ -19,7 +19,7 @@ System.config({
                 reduce(function createPathRecords(pathsMapping, appPath) {
                     // creates local module name mapping to global path with karma's fingerprint in path, e.g.:
                     // './hero.service': '/base/src/app/hero.service.js?f4523daf879cfb7310ef6242682ccf10b2041b3e'
-                    var moduleName = appPath.replace(/^\/base\/src\/app\//, './').replace(/\.js$/, '');
+                    var moduleName = appPath.replace(/^\/base\/src\//, './').replace(/\.js$/, '');
                     pathsMapping[moduleName] = appPath + '?' + window.__karma__.files[appPath]
                     return pathsMapping;
                 }, {})
@@ -55,7 +55,7 @@ function filePath2moduleName(filePath) {
 
 
 function onlyAppFiles(filePath) {
-    return /^\/base\/src\/app\/.*\.js$/.test(filePath)
+    return /^\/base\/src\/.*\.js$/.test(filePath)
 }
 
 

@@ -1,8 +1,10 @@
-import {bootstrap, Component, View} from 'angular2/angular2';
+import {Component, View} from 'angular2/core';
 
-//import {HeroFormComponent} from '../form/form.js';
-
-class Hero {
+export class Hero {
+    constructor(id: number, name: string) {
+        this.id = id;
+        this.name = name;
+    }
     id: number;
     name: string;
 }
@@ -23,14 +25,14 @@ var HEROES: Hero[] = [
     template: `<h1>{{title}}</h1>
                 <h2>My Heroes</h2>
                 <ul class="heroes">
-                    <li *ng-for="#hero of heroes" (click)="onSelect(hero)" [ng-class]="getSelectedClass(hero)">
+                    <li *ngFor="#hero of heroes" (click)="onSelect(hero)" [class.selected]="isSelected(hero)">
                         <span class="badge">{{hero.id}}</span> {{hero.name}}
                     </li>
                 </ul>
-                <div *ng-if="selectedHero">
+                <div *ngIf="selectedHero">
                     <h2>{{selectedHero.name}} details!</h2>
                     <div><label>id: </label>{{selectedHero.id}}</div>
-                    <div><label>name: </label><div><input [(ng-model)]="selectedHero.name" placeholder="name"></div></div>
+                    <div><label>name: </label><div><input [(ngModel)]="selectedHero.name" placeholder="name"></div></div>
                 </div>
                `,
     styles: [`
@@ -47,13 +49,12 @@ var HEROES: Hero[] = [
             left: -1px;
             top: -1px;
         }
-        .selected { background-color: #EEE; color: #369; }`],
-    //directives: [HeroFormComponent]
+        .selected { background-color: #EEE; color: #369; }`]
 })
 @Component({
     selector: 'my-app'
 })
-class AppComponent {
+export class AppComponent {
     public title = 'Tour of Heroes';
     public selectedHero: Hero;
     public heroes = HEROES;
@@ -62,9 +63,8 @@ class AppComponent {
         this.selectedHero = hero;
     }
 
-    getSelectedClass(hero: Hero) {
-        return { 'selected': hero === this.selectedHero };
+    isSelected(hero: Hero) {
+        return hero === this.selectedHero;
     }
 
 }
-bootstrap(AppComponent);

@@ -14,7 +14,7 @@ var rimraf = require('gulp-rimraf');
 
 // Add debounce to gulp watch for FTP
 // (function ftp_debounce_fix() {
-// 
+//
 // 	var watch = gulp.watch;
 // 	// Overwrite the local gulp.watch function
 // 	gulp.watch = function (glob, opt, fn) {
@@ -68,7 +68,7 @@ var tsProject = ts.createProject('tsconfig.json', {
 });
 
 
-// Main task 
+// Main task
 gulp.task(tasks.defaultTask, function () {
 	runSequence(
 		tasks.clean,
@@ -147,7 +147,7 @@ gulp.task(tasks.clean, function () {
 });
 
 
-// tests 		
+// tests
 gulp.task(tasks.testBuild, function () {
 	return gulp.src([testPath + '/**/**.ts'])
 		.pipe(sourcemaps.init())
@@ -159,6 +159,6 @@ gulp.task(tasks.testBuild, function () {
 gulp.task(tasks.test, [tasks.testBuild], function (done) {
 	new KarmaServer({
 		configFile: __dirname + '/karma.conf.js',
-		singleRun: true
+		singleRun: false
 	}, done).start();
 });

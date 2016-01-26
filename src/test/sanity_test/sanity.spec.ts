@@ -1,4 +1,4 @@
-/// <reference path="../../../typings/jasmine/jasmine.d.ts" />
+import { it, describe, expect } from 'angular2/testing';
 
 describe('universal truths', () => {
 	it('should do math', () => {
